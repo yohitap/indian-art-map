@@ -1,8 +1,3 @@
-/* =====================================================
-   INDIAN ART HERITAGE MAP
-===================================================== */
-
-
 const locations = {
 
     sanchi: {
@@ -174,11 +169,6 @@ const locations = {
 
 };
 
-
-/* =====================================================
-   ELEMENTS
-===================================================== */
-
 const imageElement =
     document.getElementById("location-image");
 
@@ -204,10 +194,6 @@ const markers =
     document.querySelectorAll(".map-marker");
 
 
-/* =====================================================
-   CHANGE LOCATION
-===================================================== */
-
 function showLocation(locationId) {
 
     const location =
@@ -217,10 +203,6 @@ function showLocation(locationId) {
         return;
     }
 
-
-    /*
-        Update text
-    */
 
     periodElement.textContent =
         location.period;
@@ -241,20 +223,11 @@ function showLocation(locationId) {
         location.significance;
 
 
-    /*
-        Update image
-    */
-
     imageElement.src =
         location.image;
 
     imageElement.alt =
         location.alt;
-
-
-    /*
-        Highlight selected marker
-    */
 
     markers.forEach(marker => {
 
@@ -276,10 +249,6 @@ function showLocation(locationId) {
     }
 
 
-    /*
-        Scroll information panel into view
-        on smaller screens.
-    */
 
     if (window.innerWidth <= 1100) {
 
@@ -294,11 +263,6 @@ function showLocation(locationId) {
 
 }
 
-
-/* =====================================================
-   MARKER CLICK EVENTS
-===================================================== */
-
 markers.forEach(marker => {
 
     marker.addEventListener(
@@ -312,11 +276,6 @@ markers.forEach(marker => {
 
         }
     );
-
-
-    /*
-        Keyboard accessibility
-    */
 
     marker.addEventListener(
         "keydown",
@@ -342,10 +301,6 @@ markers.forEach(marker => {
 });
 
 
-/* =====================================================
-   HERO BUTTON
-===================================================== */
-
 function scrollToMap() {
 
     const mapSection =
@@ -357,11 +312,6 @@ function scrollToMap() {
 
 }
 
-
-/* =====================================================
-   IMAGE ERROR HANDLING
-===================================================== */
-
 imageElement.addEventListener(
     "error",
     function () {
@@ -371,17 +321,7 @@ imageElement.addEventListener(
             this.src
         );
 
-        /*
-            Do not replace the image with a random
-            online URL. This makes debugging easier.
-        */
-
     }
 );
-
-
-/* =====================================================
-   INITIAL LOCATION
-===================================================== */
 
 showLocation("sanchi");
