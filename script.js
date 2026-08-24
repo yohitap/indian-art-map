@@ -1,16 +1,25 @@
+/* =====================================================
+   LOCATION DATA
+===================================================== */
+
 const locations = {
 
     sanchi: {
 
-        period: "3rd Century BCE onwards",
+        period:
+            "3rd Century BCE onwards",
 
-        title: "Sanchi",
+        title:
+            "Sanchi",
 
-        category: "BUDDHIST ART & ARCHITECTURE",
+        category:
+            "BUDDHIST ART & ARCHITECTURE",
 
-        image: "images/sanchi.jpg",
+        image:
+            "images/sanchi.jpg",
 
-        alt: "Sanchi Stupa",
+        alt:
+            "Sanchi Stupa",
 
         description:
             "Sanchi is one of India's most important Buddhist heritage sites, famous for its stupas, gateways and sculptural decoration.",
@@ -26,15 +35,20 @@ const locations = {
 
     bhimbetka: {
 
-        period: "Prehistoric Period",
+        period:
+            "Prehistoric Period",
 
-        title: "Bhimbetka",
+        title:
+            "Bhimbetka",
 
-        category: "PREHISTORIC ROCK ART",
+        category:
+            "PREHISTORIC ROCK ART",
 
-        image: "images/bhimbetka.jpg",
+        image:
+            "images/bhimbetka.jpg",
 
-        alt: "Bhimbetka rock paintings",
+        alt:
+            "Bhimbetka rock paintings",
 
         description:
             "The Bhimbetka rock shelters preserve some of the earliest known examples of rock art on the Indian subcontinent.",
@@ -50,15 +64,20 @@ const locations = {
 
     ajanta: {
 
-        period: "2nd Century BCE – 6th Century CE",
+        period:
+            "2nd Century BCE – 6th Century CE",
 
-        title: "Ajanta",
+        title:
+            "Ajanta",
 
-        category: "BUDDHIST PAINTING & SCULPTURE",
+        category:
+            "BUDDHIST PAINTING & SCULPTURE",
 
-        image: "images/ajanta.jpg",
+        image:
+            "images/ajanta.jpg",
 
-        alt: "Ajanta Caves",
+        alt:
+            "Ajanta Caves",
 
         description:
             "The Ajanta Caves are renowned for their Buddhist murals, sculptures and rock-cut architecture.",
@@ -74,15 +93,20 @@ const locations = {
 
     ellora: {
 
-        period: "5th – 10th Century CE",
+        period:
+            "5th – 10th Century CE",
 
-        title: "Ellora",
+        title:
+            "Ellora",
 
-        category: "ROCK-CUT ARCHITECTURE",
+        category:
+            "ROCK-CUT ARCHITECTURE",
 
-        image: "images/ellora.jpg",
+        image:
+            "images/ellora.jpg",
 
-        alt: "Ellora Caves",
+        alt:
+            "Ellora Caves",
 
         description:
             "Ellora is a monumental rock-cut complex containing Buddhist, Hindu and Jain caves.",
@@ -98,15 +122,20 @@ const locations = {
 
     khajuraho: {
 
-        period: "10th – 11th Century CE",
+        period:
+            "10th – 11th Century CE",
 
-        title: "Khajuraho",
+        title:
+            "Khajuraho",
 
-        category: "TEMPLE SCULPTURE & ARCHITECTURE",
+        category:
+            "TEMPLE SCULPTURE & ARCHITECTURE",
 
-        image: "images/khajuraho.jpg",
+        image:
+            "images/khajuraho.jpg",
 
-        alt: "Khajuraho Temple",
+        alt:
+            "Khajuraho Temple",
 
         description:
             "The Khajuraho group of monuments is celebrated for its elaborate temple architecture and sculptural decoration.",
@@ -122,15 +151,20 @@ const locations = {
 
     konark: {
 
-        period: "13th Century CE",
+        period:
+            "13th Century CE",
 
-        title: "Konark",
+        title:
+            "Konark",
 
-        category: "EASTERN INDIAN TEMPLE ARCHITECTURE",
+        category:
+            "EASTERN INDIAN TEMPLE ARCHITECTURE",
 
-        image: "images/konark.jpg",
+        image:
+            "images/konark.jpg",
 
-        alt: "Konark Sun Temple",
+        alt:
+            "Konark Sun Temple",
 
         description:
             "The Sun Temple at Konark is one of the most celebrated monuments of medieval Indian architecture.",
@@ -146,15 +180,20 @@ const locations = {
 
     thanjavur: {
 
-        period: "11th Century CE",
+        period:
+            "11th Century CE",
 
-        title: "Thanjavur",
+        title:
+            "Thanjavur",
 
-        category: "CHOLA TEMPLE ART & ARCHITECTURE",
+        category:
+            "CHOLA TEMPLE ART & ARCHITECTURE",
 
-        image: "images/thanjavur.jpg",
+        image:
+            "images/thanjavur.jpg",
 
-        alt: "Brihadeeswarar Temple at Thanjavur",
+        alt:
+            "Brihadeeswarar Temple at Thanjavur",
 
         description:
             "Thanjavur is renowned for the Brihadeeswarar Temple, one of the greatest achievements of Chola architecture.",
@@ -168,6 +207,12 @@ const locations = {
     }
 
 };
+
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
 
 const imageElement =
     document.getElementById("location-image");
@@ -190,17 +235,33 @@ const historyElement =
 const significanceElement =
     document.getElementById("location-significance");
 
+const infoPanel =
+    document.getElementById("info-panel");
+
 const markers =
     document.querySelectorAll(".map-marker");
 
+
+
+/* =====================================================
+   SHOW LOCATION
+===================================================== */
 
 function showLocation(locationId) {
 
     const location =
         locations[locationId];
 
+
     if (!location) {
+
+        console.error(
+            "Location not found:",
+            locationId
+        );
+
         return;
+
     }
 
 
@@ -229,12 +290,23 @@ function showLocation(locationId) {
     imageElement.alt =
         location.alt;
 
-    markers.forEach(marker => {
 
-        marker.classList.remove("active");
 
-    });
+    /* Remove active state */
 
+    markers.forEach(
+        marker => {
+
+            marker.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+
+    /* Add active state */
 
     const selectedMarker =
         document.querySelector(
@@ -244,73 +316,99 @@ function showLocation(locationId) {
 
     if (selectedMarker) {
 
-        selectedMarker.classList.add("active");
+        selectedMarker.classList.add(
+            "active"
+        );
 
     }
 
 
 
-    if (window.innerWidth <= 1100) {
+    /* Mobile */
 
-        document
-            .getElementById("info-panel")
-            .scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
+    if (
+        window.innerWidth <= 1100
+    ) {
+
+        infoPanel.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+        });
 
     }
 
 }
 
-markers.forEach(marker => {
 
-    marker.addEventListener(
-        "click",
-        function () {
 
-            const locationId =
-                this.dataset.location;
+/* =====================================================
+   MARKER EVENTS
+===================================================== */
 
-            showLocation(locationId);
+markers.forEach(
+    marker => {
 
-        }
-    );
+        marker.addEventListener(
+            "click",
+            function () {
 
-    marker.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (
-                event.key === "Enter" ||
-                event.key === " "
-            ) {
-
-                event.preventDefault();
-
-                const locationId =
-                    this.dataset.location;
-
-                showLocation(locationId);
+                showLocation(
+                    this.dataset.location
+                );
 
             }
+        );
 
-        }
-    );
 
-});
+        marker.addEventListener(
+            "keydown",
+            function (event) {
 
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    showLocation(
+                        this.dataset.location
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   HERO BUTTON
+===================================================== */
 
 function scrollToMap() {
 
-    const mapSection =
-        document.getElementById("map-section");
+    document
+        .getElementById("map-section")
+        .scrollIntoView({
 
-    mapSection.scrollIntoView({
-        behavior: "smooth"
-    });
+            behavior: "smooth"
+
+        });
 
 }
+
+
+
+/* =====================================================
+   IMAGE ERROR
+===================================================== */
 
 imageElement.addEventListener(
     "error",
@@ -323,5 +421,11 @@ imageElement.addEventListener(
 
     }
 );
+
+
+
+/* =====================================================
+   INITIAL LOCATION
+===================================================== */
 
 showLocation("sanchi");
